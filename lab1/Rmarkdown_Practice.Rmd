@@ -1,0 +1,55 @@
+---
+title: "Rmarkdown Practice"
+author: "Tianyu Lin(victor)"
+date: "2024-01-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Practice
+1. Test out the arithmetic capabilities of R; experiment by doing addition, subtraction, multiplication, and division.  
+
+```{r}
+#addition
+2+3
+```
+
+```{r}
+#subtraction
+2-3
+```
+
+```{r}
+#multiplication
+2*3
+```
+
+```{r}
+#division
+2/3
+```
+
+2. Go back to your "RMarkdown Practice" file and experiment with titles, text, and syntax.  
+## tital
+### tital
+#### tital
+
+tital
+
+3. Copy and paste the following two pieces of code into the document (include the gray code "chunks").      
+
+```{r}
+#install.packages("tidyverse")
+library("tidyverse")
+```
+
+```{r}
+ggplot(mtcars, aes(x = factor(cyl))) +
+    geom_bar()
+```
+
+4. Now `knit` the file to html using the knit button at the top of the page.  
+5. Lastly, commit and push this file to your GitHub repository.
