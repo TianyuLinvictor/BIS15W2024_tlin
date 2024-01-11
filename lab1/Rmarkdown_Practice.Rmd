@@ -33,11 +33,15 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 2. Go back to your "RMarkdown Practice" file and experiment with titles, text, and syntax.  
+
 ## tital
 ### tital
 #### tital
 
 tital
+
+the cat  
+on the tree. 
 
 3. Copy and paste the following two pieces of code into the document (include the gray code "chunks").      
 
