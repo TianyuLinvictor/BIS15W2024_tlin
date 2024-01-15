@@ -1,7 +1,7 @@
 ---
 title: "Lab 1 Homework"
 author: "Tianyu Lin"
-date: "2024-01-11"
+date: "2024-01-15"
 output:
   html_document: 
     theme: spacelab
@@ -16,6 +16,7 @@ Make sure to use the formatting conventions of RMarkdown to make your report nea
 **1. Please complete the [class survey](https://forms.gle/AHHXd3aobaAdkkFg9) if you have not already done so.**
 
 **2. What is the difference between R and RStudio? What is GitHub and why is it useful to programmers?**  
+
 R is an open source,language. RStudio is a GUI that is used to interact with R. R is more like a basic part of RStudio. GitHub is a file storage and management site used by programmers. GitHub can let programmers to save their code, and when they find problem, they can see how the other people do and learn it. 
 
 

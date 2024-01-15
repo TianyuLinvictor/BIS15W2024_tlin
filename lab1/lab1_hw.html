@@ -11,7 +11,7 @@
 
 <meta name="author" content="Tianyu Lin" />
 
-<meta name="date" content="2024-01-11" />
+<meta name="date" content="2024-01-15" />
 
 <title>Lab 1 Homework</title>
 
@@ -323,17 +323,23 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "\e259";
+.tabset-dropdown > .nav-tabs > li.active:before {
+content: "";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "\e258";
-font-family: 'Glyphicons Halflings';
+content: "";
 border: none;
+}
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "";
+font-family: 'Glyphicons Halflings';
+display: inline-block;
+padding: 10px;
+border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -376,7 +382,7 @@ display: none;
 
 <h1 class="title toc-ignore">Lab 1 Homework</h1>
 <h4 class="author">Tianyu Lin</h4>
-<h4 class="date">2024-01-11</h4>
+<h4 class="date">2024-01-15</h4>
 
 </div>
 
@@ -394,12 +400,12 @@ report neat and clean!</p>
 <p><strong>1. Please complete the <a href="https://forms.gle/AHHXd3aobaAdkkFg9">class survey</a> if you have
 not already done so.</strong></p>
 <p><strong>2. What is the difference between R and RStudio? What is
-GitHub and why is it useful to programmers?</strong><br />
-R is an open source,language. RStudio is a GUI that is used to interact
-with R. R is more like a basic part of RStudio. GitHub is a file storage
-and management site used by programmers. GitHub can let programmers to
-save their code, and when they find problem, they can see how the other
-people do and learn it.</p>
+GitHub and why is it useful to programmers?</strong></p>
+<p>R is an open source,language. RStudio is a GUI that is used to
+interact with R. R is more like a basic part of RStudio. GitHub is a
+file storage and management site used by programmers. GitHub can let
+programmers to save their code, and when they find problem, they can see
+how the other people do and learn it.</p>
 <p><strong>3. Navigate to my <a href="https://github.com/jmledford3115/BIS15LW2024_jledford">BIS15L</a>
 repository on GitHub. Notice that near the bottom there is a nice, clean
 description of the repository. You want this on your repository! It is
