@@ -14,10 +14,10 @@ Answer the following questions and complete the exercises in RMarkdown. Please e
 Make sure to use the formatting conventions of RMarkdown to make your report neat and clean!  
 
 1. What is a vector in R?  
-
+Vectors are a common way of organizing data that holds elements of the same type.
 
 2. What is a data matrix in R?  
-
+Data matrices are a series of stacked vectors, similar to a data table.
 
 3. Below are data collected by three scientists (Jill, Steve, Susan in order) measuring temperatures of eight hot springs. Run this code chunk to create the vectors.  
 ```{r}
@@ -61,11 +61,22 @@ hot_springs
 ```
 8. Show Susan's value for Opal Spring only.
 
+```{r}
+hot_springs[2,3]
+```
 
 9. Calculate the mean for Jill's column only.  
 
+```{r}
+hot_springs[,1]
+```
 
 10. Use the data matrix to perform one calculation or operation of your interest.
 
+I'm curious what the overall average temperature of these eight hot spring days were measured by these three scientists
+```{r}
+all_mean <- hot_springs[ ,4]
+mean(all_mean)
+```
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.  

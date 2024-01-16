@@ -323,17 +323,23 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "\e259";
+.tabset-dropdown > .nav-tabs > li.active:before {
+content: "";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "\e258";
-font-family: 'Glyphicons Halflings';
+content: "";
 border: none;
+}
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "";
+font-family: 'Glyphicons Halflings';
+display: inline-block;
+padding: 10px;
+border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -392,8 +398,12 @@ header above.</p>
 <p>Make sure to use the formatting conventions of RMarkdown to make your
 report neat and clean!</p>
 <ol style="list-style-type: decimal">
-<li><p>What is a vector in R?</p></li>
-<li><p>What is a data matrix in R?</p></li>
+<li><p>What is a vector in R?<br />
+Vectors are a common way of organizing data that holds elements of the
+same type.</p></li>
+<li><p>What is a data matrix in R?<br />
+Data matrices are a series of stacked vectors, similar to a data
+table.</p></li>
 <li><p>Below are data collected by three scientists (Jill, Steve, Susan
 in order) measuring temperatures of eight hot springs. Run this code
 chunk to create the vectors.</p></li>
@@ -468,11 +478,27 @@ hot_springs</code></pre>
 ## Black Spring     32.90 32.50 32.80    32.73333
 ## Pearl Spring     36.80 36.45 33.15    35.46667</code></pre>
 <ol start="8" style="list-style-type: decimal">
-<li><p>Show Susan’s value for Opal Spring only.</p></li>
-<li><p>Calculate the mean for Jill’s column only.</p></li>
-<li><p>Use the data matrix to perform one calculation or operation of
-your interest.</p></li>
+<li>Show Susan’s value for Opal Spring only.</li>
 </ol>
+<pre class="r"><code>hot_springs[2,3]</code></pre>
+<pre><code>## [1] 33.35</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Calculate the mean for Jill’s column only.</li>
+</ol>
+<pre class="r"><code>hot_springs[,1]</code></pre>
+<pre><code>##  Bluebell Spring      Opal Spring Riverside Spring   Too Hot Spring 
+##            36.25            35.15            30.70            39.70 
+##   Mystery Spring   Emerald Spring     Black Spring     Pearl Spring 
+##            31.85            30.20            32.90            36.80</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>Use the data matrix to perform one calculation or operation of your
+interest.</li>
+</ol>
+<p>I’m curious what the overall average temperature of these eight hot
+spring days were measured by these three scientists</p>
+<pre class="r"><code>all_mean &lt;- hot_springs[ ,4]
+mean(all_mean)</code></pre>
+<pre><code>## [1] 33.60417</code></pre>
 </div>
 <div id="push-your-final-code-to-github" class="section level2">
 <h2>Push your final code to GitHub!</h2>
