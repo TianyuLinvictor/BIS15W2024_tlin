@@ -48,6 +48,20 @@ msleep
 
 ```r
 sleep <- msleep
+head(sleep)
+```
+
+```
+## # A tibble: 6 × 11
+##   name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+##   <chr>   <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
+## 1 Cheetah Acin… carni Carn… lc                  12.1      NA        NA      11.9
+## 2 Owl mo… Aotus omni  Prim… <NA>                17         1.8      NA       7  
+## 3 Mounta… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+## 4 Greate… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+## 5 Cow     Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+## 6 Three-… Brad… herbi Pilo… <NA>                14.4       2.2       0.767   9.6
+## # ℹ 2 more variables: brainwt <dbl>, bodywt <dbl>
 ```
 
 3. What are the dimensions of this data frame (variables and observations)? How do you know? Please show the *code* that you used to determine this below.  
@@ -63,56 +77,145 @@ dim(sleep)
 4. Are there any NAs in the data? How did you determine this? Please show your code.  
 
 ```r
-summary(sleep)
+summary(is.na(sleep))
 ```
 
 ```
-##      name              genus               vore              order          
-##  Length:83          Length:83          Length:83          Length:83         
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
-##                                                                             
-##  conservation        sleep_total      sleep_rem      sleep_cycle    
-##  Length:83          Min.   : 1.90   Min.   :0.100   Min.   :0.1167  
-##  Class :character   1st Qu.: 7.85   1st Qu.:0.900   1st Qu.:0.1833  
-##  Mode  :character   Median :10.10   Median :1.500   Median :0.3333  
-##                     Mean   :10.43   Mean   :1.875   Mean   :0.4396  
-##                     3rd Qu.:13.75   3rd Qu.:2.400   3rd Qu.:0.5792  
-##                     Max.   :19.90   Max.   :6.600   Max.   :1.5000  
-##                                     NA's   :22      NA's   :51      
-##      awake          brainwt            bodywt        
-##  Min.   : 4.10   Min.   :0.00014   Min.   :   0.005  
-##  1st Qu.:10.25   1st Qu.:0.00290   1st Qu.:   0.174  
-##  Median :13.90   Median :0.01240   Median :   1.670  
-##  Mean   :13.57   Mean   :0.28158   Mean   : 166.136  
-##  3rd Qu.:16.15   3rd Qu.:0.12550   3rd Qu.:  41.750  
-##  Max.   :22.10   Max.   :5.71200   Max.   :6654.000  
-##                  NA's   :27
+##     name           genus            vore           order        
+##  Mode :logical   Mode :logical   Mode :logical   Mode :logical  
+##  FALSE:83        FALSE:83        FALSE:76        FALSE:83       
+##                                  TRUE :7                        
+##  conservation    sleep_total     sleep_rem       sleep_cycle    
+##  Mode :logical   Mode :logical   Mode :logical   Mode :logical  
+##  FALSE:54        FALSE:83        FALSE:61        FALSE:32       
+##  TRUE :29                        TRUE :22        TRUE :51       
+##    awake          brainwt          bodywt       
+##  Mode :logical   Mode :logical   Mode :logical  
+##  FALSE:83        FALSE:56        FALSE:83       
+##                  TRUE :27
 ```
 
 5. Show a list of the column names is this data frame.
 
+```r
+names(sleep)
+```
+
+```
+##  [1] "name"         "genus"        "vore"         "order"        "conservation"
+##  [6] "sleep_total"  "sleep_rem"    "sleep_cycle"  "awake"        "brainwt"     
+## [11] "bodywt"
+```
 
 6. How many herbivores are represented in the data?  
 
+```r
+table(sleep$vore)
+```
+
+```
+## 
+##   carni   herbi insecti    omni 
+##      19      32       5      20
+```
 
 7. We are interested in two groups; small and large mammals. Let's define small as less than or equal to 19kg body weight and large as greater than or equal to 200kg body weight. Make two new dataframes (large and small) based on these parameters.
 
+```r
+small <- filter(sleep,bodywt <= 19)
+head(small)
+```
+
+```
+## # A tibble: 6 × 11
+##   name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+##   <chr>   <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
+## 1 Owl mo… Aotus omni  Prim… <NA>                17         1.8      NA       7  
+## 2 Mounta… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+## 3 Greate… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+## 4 Three-… Brad… herbi Pilo… <NA>                14.4       2.2       0.767   9.6
+## 5 Vesper… Calo… <NA>  Rode… <NA>                 7        NA        NA      17  
+## 6 Dog     Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+## # ℹ 2 more variables: brainwt <dbl>, bodywt <dbl>
+```
+
+```r
+large <- filter(sleep,bodywt >= 200)
+head(large)
+```
+
+```
+## # A tibble: 6 × 11
+##   name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+##   <chr>   <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
+## 1 Cow     Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+## 2 Asian … Elep… herbi Prob… en                   3.9      NA        NA      20.1
+## 3 Horse   Equus herbi Peri… domesticated         2.9       0.6       1      21.1
+## 4 Giraffe Gira… herbi Arti… cd                   1.9       0.4      NA      22.1
+## 5 Pilot … Glob… carni Ceta… cd                   2.7       0.1      NA      21.4
+## 6 Africa… Loxo… herbi Prob… vu                   3.3      NA        NA      20.7
+## # ℹ 2 more variables: brainwt <dbl>, bodywt <dbl>
+```
 
 8. What is the mean weight for both the small and large mammals?
 
+```r
+small_wtmean <- mean(small$bodywt)
+small_wtmean
+```
+
+```
+## [1] 1.797847
+```
 
 
+```r
+large_wtmean <- mean(large$bodywt)
+large_wtmean
+```
+
+```
+## [1] 1747.071
+```
 
 9. Using a similar approach as above, do large or small animals sleep longer on average?  
 
 
+```r
+small_sleepmean <- mean(small$sleep_total)
+small_sleepmean
+```
+
+```
+## [1] 11.78644
+```
+
+
+```r
+large_sleepmean <- mean(large$sleep_total)
+large_sleepmean
+```
+
+```
+## [1] 3.3
+```
 
 10. Which animal is the sleepiest among the entire dataframe?
 
+
+```r
+find_sleepiest <- table(sleep$sleep_total)
+sleepiest <- filter(sleep,sleep_total==19.9)
+sleepiest 
+```
+
+```
+## # A tibble: 1 × 11
+##   name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+##   <chr>   <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
+## 1 Little… Myot… inse… Chir… <NA>                19.9         2         0.2   4.1
+## # ℹ 2 more variables: brainwt <dbl>, bodywt <dbl>
+```
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.   
