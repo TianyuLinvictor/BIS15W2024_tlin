@@ -118,6 +118,7 @@ table(sleep$vore)
 ##   carni   herbi insecti    omni 
 ##      19      32       5      20
 ```
+There are 32.
 
 7. We are interested in two groups; small and large mammals. Let's define small as less than or equal to 19kg body weight and large as greater than or equal to 200kg body weight. Make two new dataframes (large and small) based on these parameters.
 
@@ -216,6 +217,7 @@ sleepiest
 ## 1 Little… Myot… inse… Chir… <NA>                19.9         2         0.2   4.1
 ## # ℹ 2 more variables: brainwt <dbl>, bodywt <dbl>
 ```
+It is Little brown bat.
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.   
