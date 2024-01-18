@@ -1,0 +1,23 @@
+---
+title: "warmup"
+output: html_document
+date: "2024-01-18"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+height <- c(30.7, 37.6,28.4,NA,33.2)
+mass <- c(4, 5.2, 3.7 ,NA, 4.6)
+pre_matrix <- c(height,mass)
+samples <- c("plant1", "plant2", "plant3", "plant4", "plant5")
+measured <- c("height", "mass")
+matrix <- matrix(pre_matrix, nrow = 5)
+colnames(matrix) <- measured
+rownames(matrix) <- samples
+means <- colMeans(matrix, na.rm=T)
+final_matrix <- rbind(matrix, means)
+final_matrix
+```
