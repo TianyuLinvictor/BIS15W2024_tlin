@@ -45,6 +45,7 @@ dim(homerange)
 ## [1] 569  24
 ```
 
+
 ```r
 names(homerange)
 ```
@@ -63,6 +64,7 @@ names(homerange)
 ## [21] "preymass"                   "log10.preymass"            
 ## [23] "PPMR"                       "prey.size.reference"
 ```
+
 
 ```r
 glimpse(homerange)
@@ -96,6 +98,7 @@ glimpse(homerange)
 ## $ PPMR                       <dbl> NA, NA, NA, NA, NA, NA, 530, NA, NA, NA, NA…
 ## $ prey.size.reference        <chr> NA, NA, NA, NA, NA, NA, "Brose U, et al. 20…
 ```
+
 
 ```r
 summary(homerange)

@@ -38,8 +38,17 @@ homerange <- read.csv("data/Tamburelloetal_HomeRangeDatabase.csv", header=T)
 **2. Explore the data. Show the dimensions, column names, classes for each variable, and a statistical summary. Keep these as separate code chunks.**  
 ```{r}
 dim(homerange)
+```
+
+```{r}
 names(homerange)
+```
+
+```{r}
 glimpse(homerange)
+```
+
+```{r}
 summary(homerange)
 ```
 
