@@ -77,8 +77,8 @@ table(homerange_new$taxon)
 ```{r}
 carnivore <- filter(homerange_new, trophic_guild == "carnivore")
 herbivore <- filter(homerange_new, trophic_guild == "herbivore")
-summary(table(carnivore$species))
-summary(table(herbivore$species))
+table(carnivore$species)
+table(herbivore$species)
 ```
 
 **7. Make two new data frames, one which is restricted to carnivores and another that is restricted to herbivores.**  

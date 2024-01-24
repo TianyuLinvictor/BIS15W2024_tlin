@@ -1960,21 +1960,341 @@ table(homerange_new$taxon)
 ```r
 carnivore <- filter(homerange_new, trophic_guild == "carnivore")
 herbivore <- filter(homerange_new, trophic_guild == "herbivore")
-summary(table(carnivore$species))
+table(carnivore$species)
 ```
 
 ```
-## Number of cases in table: 342 
-## Number of factors: 1
+## 
+##                adspersus                    aedon                     alba 
+##                        1                        1                        2 
+##                albicauda                    aluco                americana 
+##                        1                        1                        2 
+##               americanus                   analis                annularis 
+##                        1                        1                        1 
+##                 anomalum                   apodus                aquaticus 
+##                        1                        1                        1 
+##                  arborea                 arcticus                areolatus 
+##                        2                        1                        1 
+##                    argus                  aruanus                    asper 
+##                        1                        1                        1 
+##             atricapillus                    atrox                  auratus 
+##                        2                        1                        2 
+##                  auritus             aurocapillus                australis 
+##                        1                        1                        1 
+##                   bairdi                  barbata                baronessa 
+##                        1                        1                        1 
+##                    belli              bengalensis                 bergylta 
+##                        1                        1                        1 
+##                 bewickiI                biarmicus              bifasciatum 
+##                        1                        1                        1 
+##               bivittatus               blandingii                   bonaci 
+##                        1                        1                        1 
+##                  bonelli                     bubo              bungaroides 
+##                        1                        1                        1 
+##                    buteo                  butleri                 cabrilla 
+##                        1                        1                        1 
+##            californianus               canadensis                  canorus 
+##                        1                        2                        1 
+##                    canus                  caracal                carolinae 
+##                        1                        1                        1 
+##             carolinensis               cataractae                catenifer 
+##                        1                        1                        1 
+##                    catus                 caudatus                 caurinus 
+##                        1                        1                        1 
+##                 cerastes                 cheriway               chrysaetos 
+##                        1                        1                        1 
+##              chrysopygus                chrysurus                 cinereus 
+##                        1                        1                        1 
+##                   citrea                   clarki               clathratus 
+##                        1                        1                        1 
+##                  coelebs                 collurio                 concolor 
+##                        1                        1                        1 
+##              constrictor constrictor flaviventris               contortrix 
+##                        1                        1                        1 
+##                 cooperii                    corax                coronatus 
+##                        1                        1                        1 
+##                  couperi                 cristata                cristatus 
+##                        1                        1                        1 
+##                cruentata                 culpaeus                   cyanea 
+##                        1                        1                        1 
+##                  cyaneus                    dahli                    dalli 
+##                        1                        1                        1 
+##               decussatus               dimidiatus                 dolomieu 
+##                        1                        1                        1 
+##                  elegans                    epops                  erminea 
+##                        2                        1                        1 
+##            erythrogaster                 europaea                europaeus 
+##                        1                        2                        2 
+##                   exilis                    falco               familiaris 
+##                        1                        1                        1 
+##                 fasciata                fasciatus                    ferox 
+##                        1                        1                        1 
+##                flagellum                    flava               flavescens 
+##                        1                        1                        1 
+##            flavimaculata            flavolineatus                    foina 
+##                        1                        1                        1 
+##                  frenata              funduloides                 funereus 
+##                        1                        1                        1 
+##                     furo                    fusca               fuscicauda 
+##                        1                        1                        1 
+##                 gallicus                  garnoti                 garrulus 
+##                        1                        1                        1 
+##                  genetta                 gentilis                geoffroii 
+##                        1                        1                        1 
+##                geoffroyi            getula getula                 gibbosus 
+##                        1                        1                        1 
+##                    gigal                    gilae               glandarius 
+##                        1                        1                        1 
+##                    gobio               gossypinus              gracillimus 
+##                        1                        1                        1 
+##                   granti                  griseus                     gulo 
+##                        1                        3                        1 
+##           guttata emoryi                 guttatus               guttulatus 
+##                        1                        1                        1 
+##                    harak              hemistiktos                 hipoliti 
+##                        1                        1                        1 
+##                 horridus                   huntii             ignicapillus 
+##                        1                        1                        1 
+##                ignobilis               inchneumon                  inermis 
+##                        1                        1                        1 
+##                inornatus              jamaicensis                 japonica 
+##                        1                        1                        1 
+##                  jubatus                    julis                 juncidis 
+##                        1                        1                        1 
+##                kirtlandi                   labrax                  lagopus 
+##                        1                        1                        1 
+##                 latastei                leopardus                 leucopus 
+##                        1                        1                        1 
+##                 leucotos                 lineatus               lineolatus 
+##                        1                        1                        1 
+##              longicollis              longipinnis              longissimus 
+##                        1                        1                        1 
+##             ludovicianus           lumbriciformis                   lunare 
+##                        2                        1                        1 
+##                  luridus                 lutreola                     lynx 
+##                        1                        1                        1 
+##              maccullochi              macrochirus                  macroti 
+##                        1                        1                        1 
+##                maculatus              maculipinna                    magna 
+##                        1                        1                        1 
+##                 magnolia                  maliger               marginatus 
+##                        1                        1                        1 
+##               marmoratus                   martes                  martius 
+##                        1                        1                        1 
+##              masquinongy                   medius                megalotis 
+##                        1                        1                        1 
+##             melanoleucus                 melanops                mexicanus 
+##                        1                        1                        1 
+##                   milvus                  miniata                  minimus 
+##                        1                        1                        1 
+##                    minor           minor peltifer                 molossus 
+##                        1                        1                        1 
+##                    morio                 mustinus                   mykiss 
+##                        1                        1                        1 
+##                  natalis                   natrix                nebulifer 
+##                        1                        1                        1 
+##                 neglecta                nicholsii                 nigripes 
+##                        1                        1                        1 
+##                    nisus                  nivalis                   noctua 
+##                        1                        1                        1 
+##                 obesulus                 obsoleta                 odoratus 
+##                        1                        1                        1 
+##                 oenanthe                olivaceus                     onca 
+##                        1                        1                        1 
+##              orbicularis        oreganus concolor               ostralegus 
+##                        1                        1                        1 
+##                     otus              paludinosus                palustris 
+##                        1                        1                        1 
+##                 pardalis                 pardinus                   pardus 
+##                        1                        1                        1 
+##                  parvula                passerina               passerinum 
+##                        1                        1                        1 
+##              penicillata                 pennanti                 pennatus 
+##                        1                        1                        1 
+##             pensylvanica             percnopterus               peregrinus 
+##                        1                        1                        1 
+##                 petechia             philadelphia              phoenicurus 
+##                        1                        1                        1 
+##          picta marginata                    pinos              piscivorous 
+##                        1                        1                        1 
+##              platirhinos                poecilura                    poeyi 
+##                        1                        1                        1 
+##               pollachius               polyglotta              polyglottos 
+##                        1                        1                        1 
+##               porphyreus             porphyriacus                   pricei 
+##                        1                        1                        1 
+##                 princeps                  pulcher                punctatus 
+##                        1                        1                        1 
+##                 pygargus                   raddei               radiolosus 
+##                        1                        1                        1 
+##                  regulus              reticularia                   romana 
+##                        1                        1                        1 
+##                 rostrata                  rubetra                   rubica 
+##                        2                        1                        1 
+##                rubrubrum                rufescens             rufodorsatus 
+##                        1                        1                        1 
+##                    rufus                rupestris                 ruppelli 
+##                        2                        1                        1 
+##                  russula                ruticilla                    salar 
+##                        1                        1                        1 
+##                salmoides                    sarda               savannarum 
+##                        1                        1                        1 
+##                scandiaca               schneideri                   scriba 
+##                        1                        1                        1 
+##                 scutatus               scutulatus                  senator 
+##                        1                        1                        1 
+##                  serinus               serpentina                   serval 
+##                        1                        1                        1 
+##              shedaoensis                   sialis                 sibirica 
+##                        1                        1                        1 
+##                 simensis                 sipeodon               sparverius 
+##                        1                        1                        1 
+##             spectrabilis        spilota imbricata                spinifera 
+##                        1                        1                        1 
+##                splendens                stellaris                  striata 
+##                        1                        1                        1 
+##                 striatus                 stuartii                swainsoni 
+##                        2                        1                        1 
+##               sylvestris                  tauvina                    taxus 
+##                        1                        1                        1 
+##            tetradactylus                  tigrina                   tigris 
+##                        1                        1                        2 
+##              tinnunculus                torquilla                 torridus 
+##                        1                        1                        1 
+##               trevelyani               triangulum                  trichas 
+##                        1                        1                        1 
+##                trichrous              tridactylus             trifascialis 
+##                        1                        1                        1 
+##             trifasciatus              troglodytes                   trutta 
+##                        1                        1                        1 
+##                 tyrannus                    uncia                   undata 
+##                        1                        1                        1 
+##                undulatus             unguiculatus             unimaculatus 
+##                        1                        1                        1 
+##                  ursinus                    velox                   vermis 
+##                        1                        1                        1 
+##                   virens              virginianus             viridiflavus 
+##                        4                        1                        1 
+##                  viridis                  vittata                   wiedii 
+##                        2                        1                        1 
+##                    wolfi                 wrightii             yagouaroundi 
+##                        1                        1                        1 
+##                  zibetha 
+##                        1
 ```
 
 ```r
-summary(table(herbivore$species))
+table(herbivore$species)
 ```
 
 ```
-## Number of cases in table: 227 
-## Number of factors: 1
+## 
+##           aberti        aegyptius      aethiopicus africaeaustralis 
+##                2                1                1                1 
+##         africana        africanus        agassizii         agrestis 
+##                1                1                1                1 
+##            alces        americana       americanus            ammon 
+##                1                2                2                1 
+##          amoenus      antilopinus         antimena         apicalis 
+##                1                1                1                1 
+##        aquaticus         arcticus argenteocinereus             argi 
+##                2                1                1                1 
+##        assimilis       atlanticus        audeberti     aurofrenatum 
+##                1                1                1                1 
+##     avellanarius             axis         beecheyi      bezoarticus 
+##                1                1                1                1 
+##          bicolor         bicornis       biocellata            bison 
+##                1                1                1                1 
+##          bonasia          bonasus           bottae       buselaphus 
+##                1                1                1                1 
+##         caballus     californicus       callipygus   camelopardalis 
+##                1                3                1                1 
+##          camelus       campestris       canadensis        cannabina 
+##                1                1                1                1 
+##         capensis        capreolus       carbonaria     carolinensis 
+##                2                1                1                1 
+##    caryocatactes          chromis     chrysopterum          cinerea 
+##                1                1                1                1 
+##      columbianus          cooperi             crex        cuniculus 
+##                1                1                1                1 
+##  cupido pinnatus        curzoniae          cuvieri           cyanus 
+##                1                1                1                1 
+##          cyclura             dama       damarensis     dentirostris 
+##                1                1                1                1 
+##         dorsalis         dorsatum          elaphus       erythropus 
+##                3                1                1                1 
+##        europaeus      flagellifer      flavicollis     flaviventris 
+##                1                1                1                1 
+##           flavus       floridanus         fraenata       franklinii 
+##                1                1                1                1 
+##          fulgens      fuliginosus         fuscipes           fuscus 
+##                1                1                1                2 
+##         gaimardi          galloti          gazella        giganteus 
+##                1                1                1                1 
+##           glaber           graeca        guentheri      habroptilus 
+##                1                1                1                1 
+##         hemionus         hermanii           hircus         hispidua 
+##                1                1                1                1 
+##       horsfieldi      hottentotus       hudsonicus        hurrianae 
+##                1                1                1                1 
+##       idahoensis         impressa             inca           indica 
+##                1                1                1                1 
+##           ingens            iseri        johnstoni       kleinmanni 
+##                1                1                1                1 
+##         krefftii          lagopus           lepida          leprosa 
+##                1                1                1                1 
+##           lervia           lewisi         lineatus              lis 
+##                1                1                1                1 
+##        lituratus         longipes        lumholtzi            major 
+##                1                1                1                1 
+##          maximus     megacephalus         melampus      melanoleuca 
+##                2                1                1                1 
+##         merriami         micropus      microrhinos          minimus 
+##                1                1                1                1 
+##            monax         montanus            niger      nigricollis 
+##                1                1                1                1 
+##           nippon           obesus         obscurus      ochrogaster 
+##                1                1                1                1 
+##         ocularis            ordii           ornata             oryx 
+##                1                1                2                1 
+##        palliatus         pallidus         palumbus        palustris 
+##                1                1                1                1 
+##         pardalis          parryii         partitus        patagonus 
+##                1                1                1                1 
+##           pecari         pennanti          pennata   pennsylvanicus 
+##                1                1                1                1 
+##           perdix        pinetorum          pinguis       polyphemus 
+##                1                1                1                1 
+##      prehensilis         princeps             puda          pumilio 
+##                1                1                1                1 
+##        pyrenaica   quadrivittatus        raimondii      raviventris 
+##                1                1                1                1 
+##          reevesi      richardsoni        rivulatus         robustus 
+##                1                1                1                1 
+##       rubripinne             rufa      rufogriseus            rufus 
+##                1                1                1                2 
+##        rupicapra         sabrinus            salpa     schisticolor 
+##                1                1                1                1 
+##         scriptus        sectatrix     semispinosus        sibiricus 
+##                1                1                1                2 
+##            simum      spectabilis           spekii        spilosoma 
+##                1                1                1                1 
+##        stephensi       stigmatica         strepera     strepsiceros 
+##                1                1                1                1 
+##          suillus       sylvaticus           tajacu         tarandus 
+##                1                1                1                1 
+##            telum        tentorius           tetrix           thetis 
+##                1                1                1                1 
+##          timidus        torquatus     travancorica tridecemlineatus 
+##                1                1                1                1 
+##           turtur         umbrinus        unicornis        urogallus 
+##                1                1                1                1 
+##     urophasianus          ursinus       variabilis       variegatus 
+##                1                1                1                1 
+##      virginianus           viride           volans         vulgaris 
+##                1                1                2                1 
+##        vulpecula          wagneri            wardi        zibethica 
+##                1                1                1                1
 ```
 
 **7. Make two new data frames, one which is restricted to carnivores and another that is restricted to herbivores.**  
