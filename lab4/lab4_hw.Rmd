@@ -65,7 +65,6 @@ levels(homerange$order)
 homerange_new <- clean_names(homerange)
 names(homerange_new )
 taxa <- select(homerange_new,"taxon","common_name","class","order","family","genus","species")
-taxa
 ```
 
 **5. The variable `taxon` identifies the common name groups of the species represented in `homerange`. Make a table the shows the counts for each of these `taxon`.**  
@@ -80,27 +79,37 @@ table(homerange_new$trophic_guild)
 
 **7. Make two new data frames, one which is restricted to carnivores and another that is restricted to herbivores.**  
 ```{r}
+carnivores <-filter(homerange_new,trophic_guild=="carnivore")
 
+herbivores <-filter(homerange_new,trophic_guild=="herbivore")
 ```
 
 **8. Do herbivores or carnivores have, on average, a larger `mean.hra.m2`? Remove any NAs from the data.**  
 ```{r}
-
+mean(carnivores$mean_hra_m2,na.rm = T)
 ```
 
 ```{r}
-
+mean(herbivores$mean_hra_m2,na.rm = T)
 ```
+
+herbivores have a larger 'mean.hra.m2'
 
 **9. Make a new dataframe `owls` that is limited to the mean mass, log10 mass, family, genus, and species of owls in the database. Which is the smallest owl? What is its common name? Do a little bit of searching online to see what you can learn about this species and provide a link below** 
 ```{r}
-
+owls<-filter(homerange_new,order=="strigiformes")
+owls<-select(owls,"common_name","mean_mass_g","log10_mass" ,"family","genus","species")
 ```
+
+The passerinum is the smallest owl. The common name is 	
+Eurasian pygmy owl.It is the smallest owl in Europe. It is a dark reddish to greyish-brown, with spotted sides and half of a white ring around the back of the neck.[passerinum ](https://en.wikipedia.org/wiki/Eurasian_pygmy_owl). 
 
 **10. As measured by the data, which bird species has the largest homerange? Show all of your work, please. Look this species up online and tell me about it!**.  
 ```{r}
-
+bird_homerange <- filter(homerange_new,class=="aves")
 ```
+
+Cheriway has the largest homerange. It is found throughout Central and South America but has been found in northern Minnesota to Tierra del Fuego. 
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.   
