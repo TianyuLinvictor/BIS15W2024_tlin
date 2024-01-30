@@ -1,0 +1,42 @@
+---
+title: "warmup"
+output: html_document
+date: "2024-01-30"
+---
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+
+```{r}
+bison <- read.csv("~/Desktop/BIS15W2024_tlin/lab6/data/bison.csv")
+```
+
+```{r}
+dim(bison)
+```
+
+```{r}
+glimpse(bison)
+```
+
+```{r}
+bison_new <- select(bison,"data_code","animal_yob","animal_sex","animal_weight")
+```
+
+```{r}
+bison_80_90 <-filter(bison_new, between(animal_yob,1980,1990))
+```
+
+```{r}
+table(bison_new$animal_sex)
+```
+
+```{r}
+male_bison <- filter(bison_80_90,animal_sex=="M")
+female_bison <- filter(bison_80_90,animal_sex=="F")
+mean(male_bison$animal_weight,na.rm = T)
+mean(female_bison$animal_weight)
+```
+
