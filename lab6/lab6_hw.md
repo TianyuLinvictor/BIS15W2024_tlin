@@ -400,9 +400,10 @@ superhero_info %>%
 11. Let's make a new variable that is the ratio of height to weight. Call this variable `height_weight_ratio`.    
 
 ```r
-superhero_info %>% 
+height_weight_ratio<- superhero_info %>% 
   mutate(height_weight_ratio =height/weight)%>%
   arrange(height_weight_ratio)
+height_weight_ratio
 ```
 
 ```
@@ -424,8 +425,8 @@ superhero_info %>%
 ```
 
 12. Who has the highest height to weight ratio?  
-
-Anti-Spawn has the highest height to weight ratio.
+	
+Groot has the highest height to weight ratio.
 
 ## `superhero_powers`
 Have a quick look at the `superhero_powers` data frame.  

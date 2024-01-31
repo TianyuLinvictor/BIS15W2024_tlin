@@ -1848,9 +1848,10 @@ sure to sort your results by weight lowest to highest.</li>
 <li>Let’s make a new variable that is the ratio of height to weight.
 Call this variable <code>height_weight_ratio</code>.</li>
 </ol>
-<pre class="r"><code>superhero_info %&gt;% 
+<pre class="r"><code>height_weight_ratio&lt;- superhero_info %&gt;% 
   mutate(height_weight_ratio =height/weight)%&gt;%
-  arrange(height_weight_ratio)</code></pre>
+  arrange(height_weight_ratio)
+height_weight_ratio</code></pre>
 <pre><code>## # A tibble: 734 × 11
 ##    name  gender eye_color race  hair_color height publisher skin_color alignment
 ##    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;    
@@ -1869,7 +1870,7 @@ Call this variable <code>height_weight_ratio</code>.</li>
 <ol start="12" style="list-style-type: decimal">
 <li>Who has the highest height to weight ratio?</li>
 </ol>
-<p>Anti-Spawn has the highest height to weight ratio.</p>
+<p>Groot has the highest height to weight ratio.</p>
 </div>
 <div id="superhero_powers" class="section level2">
 <h2><code>superhero_powers</code></h2>
