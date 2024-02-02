@@ -102,10 +102,12 @@ There are 1551 fish species
 ```{r}
 new_fisheries_tidy%>%
   filter(year==2000)%>%
-  arrange(desc(catch))
+  group_by(country)%>%
+  summarize(total=sum(catch))%>%
+  arrange(desc(total))
 ```
 
-It is China 
+It is Bangladesh 
 
 7. Which country caught the most sardines (_Sardina pilchardus_) between the years 1990-2000?
 ```{r}
@@ -141,6 +143,7 @@ new_fisheries_tidy%>%
 It is the Theragra chalcogramma
 
 10. Use the data to do at least one analysis of your choice.
+
 I'm curious which fish species were caught the most in China from 2000 to 2012
 ```{r}
 new_fisheries_tidy%>%

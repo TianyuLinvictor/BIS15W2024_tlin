@@ -752,24 +752,24 @@ were caught as part of these data?</li>
 </ol>
 <pre class="r"><code>new_fisheries_tidy%&gt;%
   filter(year==2000)%&gt;%
-  arrange(desc(catch))</code></pre>
-<pre><code>## # A tibble: 8,793 × 6
-##    country  isscaap_taxonomic_gr…¹ asfis_species_name asfis_species_number  year
-##    &lt;fct&gt;    &lt;chr&gt;                  &lt;chr&gt;              &lt;fct&gt;                &lt;dbl&gt;
-##  1 China    Marine fishes not ide… Osteichthyes       199XXXXXXX010         2000
-##  2 Peru     Herrings, sardines, a… Engraulis ringens  1210600208            2000
-##  3 Russian… Cods, hakes, haddocks  Theragra chalcogr… 1480401601            2000
-##  4 Viet Nam Marine fishes not ide… Osteichthyes       199XXXXXXX010         2000
-##  5 Chile    Miscellaneous pelagic… Trachurus murphyi  1702300405            2000
-##  6 China    Miscellaneous marine … Mollusca           399XXXXXXX016         2000
-##  7 China    Miscellaneous demersa… Trichiurus leptur… 1750600302            2000
-##  8 United … Cods, hakes, haddocks  Theragra chalcogr… 1480401601            2000
-##  9 China    Miscellaneous marine … Crustacea          299XXXXXXX013         2000
-## 10 Philipp… Miscellaneous pelagic… Decapterus spp     17023043XX            2000
-## # ℹ 8,783 more rows
-## # ℹ abbreviated name: ¹​isscaap_taxonomic_group
-## # ℹ 1 more variable: catch &lt;dbl&gt;</code></pre>
-<p>It is China</p>
+  group_by(country)%&gt;%
+  summarize(total=sum(catch))%&gt;%
+  arrange(desc(total))</code></pre>
+<pre><code>## # A tibble: 193 × 2
+##    country                total
+##    &lt;fct&gt;                  &lt;dbl&gt;
+##  1 Bangladesh              1499
+##  2 Aruba                    163
+##  3 Iraq                      89
+##  4 TimorLeste                89
+##  5 Sudan (former)            70
+##  6 Montserrat                33
+##  7 Suriname                  26
+##  8 French Guiana              7
+##  9 Bosnia and Herzegovina     5
+## 10 Pitcairn Islands           5
+## # ℹ 183 more rows</code></pre>
+<p>It is Bangladesh</p>
 <ol start="7" style="list-style-type: decimal">
 <li>Which country caught the most sardines (<em>Sardina pilchardus</em>)
 between the years 1990-2000?</li>
@@ -848,9 +848,10 @@ Osteichthyes is not a species)</li>
 ## # ℹ 1,462 more rows</code></pre>
 <p>It is the Theragra chalcogramma</p>
 <ol start="10" style="list-style-type: decimal">
-<li>Use the data to do at least one analysis of your choice. I’m curious
-which fish species were caught the most in China from 2000 to 2012</li>
+<li>Use the data to do at least one analysis of your choice.</li>
 </ol>
+<p>I’m curious which fish species were caught the most in China from
+2000 to 2012</p>
 <pre class="r"><code>new_fisheries_tidy%&gt;%
   filter(between(year,2008,2012),country==&quot;China&quot;)%&gt;%
   group_by(asfis_species_name)%&gt;%

@@ -418,29 +418,29 @@ There are 1551 fish species
 ```r
 new_fisheries_tidy%>%
   filter(year==2000)%>%
-  arrange(desc(catch))
+  group_by(country)%>%
+  summarize(total=sum(catch))%>%
+  arrange(desc(total))
 ```
 
 ```
-## # A tibble: 8,793 × 6
-##    country  isscaap_taxonomic_gr…¹ asfis_species_name asfis_species_number  year
-##    <fct>    <chr>                  <chr>              <fct>                <dbl>
-##  1 China    Marine fishes not ide… Osteichthyes       199XXXXXXX010         2000
-##  2 Peru     Herrings, sardines, a… Engraulis ringens  1210600208            2000
-##  3 Russian… Cods, hakes, haddocks  Theragra chalcogr… 1480401601            2000
-##  4 Viet Nam Marine fishes not ide… Osteichthyes       199XXXXXXX010         2000
-##  5 Chile    Miscellaneous pelagic… Trachurus murphyi  1702300405            2000
-##  6 China    Miscellaneous marine … Mollusca           399XXXXXXX016         2000
-##  7 China    Miscellaneous demersa… Trichiurus leptur… 1750600302            2000
-##  8 United … Cods, hakes, haddocks  Theragra chalcogr… 1480401601            2000
-##  9 China    Miscellaneous marine … Crustacea          299XXXXXXX013         2000
-## 10 Philipp… Miscellaneous pelagic… Decapterus spp     17023043XX            2000
-## # ℹ 8,783 more rows
-## # ℹ abbreviated name: ¹​isscaap_taxonomic_group
-## # ℹ 1 more variable: catch <dbl>
+## # A tibble: 193 × 2
+##    country                total
+##    <fct>                  <dbl>
+##  1 Bangladesh              1499
+##  2 Aruba                    163
+##  3 Iraq                      89
+##  4 TimorLeste                89
+##  5 Sudan (former)            70
+##  6 Montserrat                33
+##  7 Suriname                  26
+##  8 French Guiana              7
+##  9 Bosnia and Herzegovina     5
+## 10 Pitcairn Islands           5
+## # ℹ 183 more rows
 ```
 
-It is China 
+It is Bangladesh 
 
 7. Which country caught the most sardines (_Sardina pilchardus_) between the years 1990-2000?
 
@@ -535,6 +535,7 @@ new_fisheries_tidy%>%
 It is the Theragra chalcogramma
 
 10. Use the data to do at least one analysis of your choice.
+
 I'm curious which fish species were caught the most in China from 2000 to 2012
 
 ```r
