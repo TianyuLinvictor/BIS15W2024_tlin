@@ -1,0 +1,100 @@
+---
+title: "Mid 1 Note"
+author: "Tianyu LIn"
+date: "2024-02-05"
+output: html_document
+---
+## GitHub  
+[GitHub](http://www.github.com) is a file storage and management site used by programmers. Programmers upload code to repositories (folders) and make it publicly available. We will use Github to store our work in BIS 15L. 
+
+## R and RStudio  
+R is an open source, **scripting** language. RStudio is a GUI
+
+## RMarkdown  
+Annotation of code is important for programmers of all levels. When code is annotated, it is easy for others to understand and perhaps more importantly, easier for the person who wrote the code to understand when returning to a project days, months, or even years later. RMarkdown allows us to embed code in annotated chunks, show the results of analyses, and display graphical output all in one file. It is a great way of making a report which can be conveniently output to html or pdf.
+
+## Links
+I often add links to my RMarkdown files. For a website, include the page name in `[]` and the website address in `()`. [BIS 15L Webpage](https://jmledford3115.github.io/datascibiol/).   
+
+## NA
+```{r}
+is.na(my_missing)
+```
+
+```{r}
+anyNA(my_missing)
+```
+
+```{r}
+mean(new_vector, na.rm=T) #na.rm removes the NA values in the vector
+```
+
+## data.frame()`.
+```{r}
+hbirds <- data.frame(Sex, Length, Weight)
+hbirds
+```
+
+## Adding Rows
+```{r}
+hbirds<- rbind(hbirds, new_bird)
+```
+
+## Change it to factor and then show the levels of that factor.  
+```{r}
+hot_springs$spring <- as.factor(hot_springs$spring)
+```
+
+## Summary functions
+Once data have been uploaded, you may want to get an idea of its structure, contents, and dimensions. I routinely run one or more of these commands when data are first imported.  
+
+We can summarize our data frame with the`summary()` function.  
+```{r}
+summary(fish)
+```
+
+`glimpse()` is another useful summary function.
+```{r}
+glimpse(fish)
+```
+
+`nrow()` gives the numbers of rows.
+```{r}
+nrow(fish)
+```
+
+`ncol` gives the number of columns.
+```{r}
+ncol(fish)
+```
+
+`dim()` gives the dimensions.
+```{r}
+dim(fish)
+```
+
+`names` gives the column names.
+```{r}
+names(fish)
+```
+
+`head()` prints the first n rows of the data frame.
+```{r}
+head(fish)
+```
+
+`tail()` prinst the last n rows of the data frame.
+```{r}
+tail(fish)
+```
+
+`table()` is useful when you have a limited number of categorical variables. It produces fast counts of the number of observations in a variable. We will come back to this later... 
+```{r}
+table(fish$lakeid)
+```
+
+## Filter
+Filter is a way of pulling out observations that meet specific criteria in a variable. We will work a lot more with this in the next lab.  
+```{r}
+little_fish <- filter(fish,length<=100)
+little_fish
