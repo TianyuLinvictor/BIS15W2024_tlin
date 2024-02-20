@@ -1,7 +1,7 @@
 ---
 title: "Homework 9"
 author: "Please Add Your Name Here"
-date: "2024-02-15"
+date: "2024-02-20"
 output:
   html_document: 
     theme: spacelab
@@ -369,14 +369,123 @@ Remove `Hastings College of Law` and `UC San Francisco` and store the final data
 
 ```r
 univ_calif_final<- colleges%>%
+    filter_all(any_vars(str_detect(., pattern = "University of California")))%>%
   filter(instnm!="University of California-Hastings College of Law"&instnm!="University of California-San Francisco")
+univ_calif_final
+```
+
+```
+##                                   instnm          city stabbr        zip
+## 1     University of California-San Diego      La Jolla     CA      92093
+## 2        University of California-Irvine        Irvine     CA      92697
+## 3     University of California-Riverside     Riverside     CA      92521
+## 4   University of California-Los Angeles   Los Angeles     CA 90095-1405
+## 5         University of California-Davis         Davis     CA 95616-8678
+## 6    University of California-Santa Cruz    Santa Cruz     CA 95064-1011
+## 7      University of California-Berkeley      Berkeley     CA      94720
+## 8 University of California-Santa Barbara Santa Barbara     CA      93106
+##   adm_rate sat_avg pcip26 costt4_a c150_4_pooled pftftug1_ef
+## 1   0.3566    1324 0.2165    31043        0.8724      0.6622
+## 2   0.4065    1206 0.1073    31198        0.8764      0.7254
+## 3   0.6634    1078 0.1491    31494        0.7300      0.8111
+## 4   0.1799    1334 0.1548    33078        0.9112      0.6607
+## 5   0.4228    1218 0.1975    33904        0.8502      0.6049
+## 6   0.5785    1201 0.1927    34608        0.7764      0.7856
+## 7   0.1693    1422 0.1053    34924        0.9165      0.7087
+## 8   0.3577    1281 0.1075    34998        0.8157      0.7077
 ```
 
 Use `separate()` to separate institution name into two new columns "UNIV" and "CAMPUS".
 
+```r
+univ_calif_final<-univ_calif_final%>%
+  separate(instnm, into=c("univ", "campus"), sep="-")
+univ_calif_final
+```
+
+```
+##                       univ        campus          city stabbr        zip
+## 1 University of California     San Diego      La Jolla     CA      92093
+## 2 University of California        Irvine        Irvine     CA      92697
+## 3 University of California     Riverside     Riverside     CA      92521
+## 4 University of California   Los Angeles   Los Angeles     CA 90095-1405
+## 5 University of California         Davis         Davis     CA 95616-8678
+## 6 University of California    Santa Cruz    Santa Cruz     CA 95064-1011
+## 7 University of California      Berkeley      Berkeley     CA      94720
+## 8 University of California Santa Barbara Santa Barbara     CA      93106
+##   adm_rate sat_avg pcip26 costt4_a c150_4_pooled pftftug1_ef
+## 1   0.3566    1324 0.2165    31043        0.8724      0.6622
+## 2   0.4065    1206 0.1073    31198        0.8764      0.7254
+## 3   0.6634    1078 0.1491    31494        0.7300      0.8111
+## 4   0.1799    1334 0.1548    33078        0.9112      0.6607
+## 5   0.4228    1218 0.1975    33904        0.8502      0.6049
+## 6   0.5785    1201 0.1927    34608        0.7764      0.7856
+## 7   0.1693    1422 0.1053    34924        0.9165      0.7087
+## 8   0.3577    1281 0.1075    34998        0.8157      0.7077
+```
 
 9. The column `ADM_RATE` is the admissions rate by campus. Which UC has the lowest and highest admissions rates? Produce a numerical summary and an appropriate plot.
 
+```r
+univ_calif_final%>%
+  select(campus,adm_rate)%>%
+  arrange(desc(adm_rate))
+```
+
+```
+##          campus adm_rate
+## 1     Riverside   0.6634
+## 2    Santa Cruz   0.5785
+## 3         Davis   0.4228
+## 4        Irvine   0.4065
+## 5 Santa Barbara   0.3577
+## 6     San Diego   0.3566
+## 7   Los Angeles   0.1799
+## 8      Berkeley   0.1693
+```
+
+
+```r
+univ_calif_final%>%
+  ggplot(aes(x=campus, y=adm_rate))+
+  geom_col()+
+  coord_flip()
+```
+
+![](hw9_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+
+The highest one is UC Riverside. The lowest one is UC Berkeley
+
 10. If you wanted to get a degree in biological or biomedical sciences, which campus confers the majority of these degrees? Produce a numerical summary and an appropriate plot.
+
+```r
+univ_calif_final%>%
+  select(campus,pcip26)%>%
+  arrange(desc(pcip26))
+```
+
+```
+##          campus pcip26
+## 1     San Diego 0.2165
+## 2         Davis 0.1975
+## 3    Santa Cruz 0.1927
+## 4   Los Angeles 0.1548
+## 5     Riverside 0.1491
+## 6 Santa Barbara 0.1075
+## 7        Irvine 0.1073
+## 8      Berkeley 0.1053
+```
+
+
+```r
+univ_calif_final%>%
+  ggplot(aes(x=campus, y=pcip26))+
+  geom_col()+
+  coord_flip()
+```
+
+![](hw9_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+
+UC San Diego have the highest percentage of degrees awarded in Biological And Biomedical Sciences.
 
 ## Knit Your Output and Post to [GitHub](https://github.com/FRS417-DataScienceBiologists)
