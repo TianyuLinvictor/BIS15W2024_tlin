@@ -20,7 +20,7 @@ output:
 ## Where have we been, and where are we going?
 At this point you should feel comfortable working in RStudio and using `dplyr` and `tidyr.` You also know how to produce statistical summaries of data and deal with NA's. It is OK if you need to go back through the labs and find bits of code that work for you, that's what most people do!     
 
-## Resources  
+##Resources  
 - [ggplot2 cheatsheet](https://posit.co/resources/cheatsheets/)  
 
 ## Libraries
@@ -78,10 +78,15 @@ ggplot(data=iris, #specify the data
 ## Practice
 1. Use the iris data to build a scatterplot that compares sepal length vs. sepal width. Use the cheat sheet for help to find the correct `geom_` for a scatterplot.
 ```{r}
-ggplot(data=iris, #specify the data
-       mapping=aes(x=Sepal.Width, y=Sepal.Length))+ #map the aesthetics
-  geom_point() 
+names(iris)
 ```
+
+```{r}
+ggplot(data=iris, 
+       mapping=aes(x=Sepal.Width, y=Sepal.Length))+
+  geom_point()
+```
+
 
 ## Scatterplots and barplots
 Now that we have a general idea of the syntax, let's start by working with two common plots: 1) scatter plots and 2) bar plots.
@@ -101,7 +106,7 @@ glimpse(homerange)
 ```
 
 ```{r}
-
+naniar::miss_var_summary(homerange)
 ```
 
 ### 1. Scatter Plots
@@ -134,9 +139,13 @@ ggplot(data=homerange, mapping=aes(x=log10.mass, y=log10.hra))+
 ### Practice
 1. What is the relationship between log10.hra and log10.preymass? What do you notice about how ggplot treats NA's?
 ```{r}
-ggplot(data=homerange, mapping=aes(x=log10.hra, y=log10.preymass))+
-  geom_point(na.rm = T)+
-  geom_smooth(method=lm, se=T,na.rm = T)
+names(homerange)
+```
+
+```{r}
+ggplot(homerange, mapping=aes(x=log10.hra, y=log10.preymass))+
+  geom_point(na.rm=T)+
+  geom_smooth(method=lm, se=F, na.rm=F)
 ```
 
 ### Bar Plot: `geom_bar()`
@@ -180,22 +189,35 @@ homerange %>%
 ## Practice
 1. Filter the `homerange` data to include `mammals` only.
 ```{r}
-mammals<-homerange%>%
-  filter(taxon=="mammals")
+names(homerange)
 ```
+
+```{r}
+homerange %>% 
+  filter(class=="mammalia")
+```
+
 
 2. Are there more herbivores or carnivores in mammals? Make a bar plot that shows their relative numbers.
 ```{r}
-mammals %>% 
-  count(trophic.guild)%>%
-  ggplot(aes(x=trophic.guild,y=n)) + 
+homerange %>% 
+  filter(class=="mammalia") %>% 
+  count(trophic.guild) 
+```
+
+```{r}
+homerange %>% 
+  filter(class=="mammalia") %>% 
+  count(trophic.guild) %>% 
+  ggplot(aes(x=trophic.guild, y=n))+
   geom_col()
 ```
 
 3. Make a bar plot that shows the masses of the top 10 smallest mammals.
 ```{r}
-mammals %>% 
-  top_n(-10,log10.mass)%>%
+homerange %>%
+  filter(class=="mammalia") %>% 
+  top_n(-10, log10.mass) %>% 
   ggplot(aes(x=common.name, y=log10.mass))+
   geom_col()+
   coord_flip()
