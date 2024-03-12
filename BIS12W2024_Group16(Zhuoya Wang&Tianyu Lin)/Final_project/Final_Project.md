@@ -17,7 +17,7 @@ library("dplyr")
 
 
 ```r
-pokemon <- read.csv("~/Desktop/GitHub/BIS15W2024_zywang/BIS12W2024_Group16(Zhuoya Wang&Tianyu Lin)/pokemon.csv")
+pokemon <- read.csv("pokemon.csv")
 ```
 
 
@@ -167,16 +167,7 @@ summary(pokemon)
 ## 
 ```
 
-
-It is observed that the variable named'type2' has many blank observations, so we replace them with NA
-
-
-```r
-pokemon <- pokemon %>%
-  mutate_all(~ifelse(. == "", NA, .))
-```
-
-check "NA" again
+Check NA
 
 ```r
 pokemon %>% naniar::miss_var_summary()
@@ -186,15 +177,211 @@ pokemon %>% naniar::miss_var_summary()
 ## # A tibble: 41 × 3
 ##    variable         n_miss pct_miss
 ##    <chr>             <int>    <dbl>
-##  1 type2               384    47.9 
-##  2 percentage_male      98    12.2 
-##  3 height_m             20     2.50
-##  4 weight_kg            20     2.50
-##  5 abilities             0     0   
-##  6 against_bug           0     0   
-##  7 against_dark          0     0   
-##  8 against_dragon        0     0   
-##  9 against_electric      0     0   
-## 10 against_fairy         0     0   
+##  1 percentage_male      98    12.2 
+##  2 height_m             20     2.50
+##  3 weight_kg            20     2.50
+##  4 abilities             0     0   
+##  5 against_bug           0     0   
+##  6 against_dark          0     0   
+##  7 against_dragon        0     0   
+##  8 against_electric      0     0   
+##  9 against_fairy         0     0   
+## 10 against_fight         0     0   
 ## # ℹ 31 more rows
 ```
+
+
+
+
+It is observed that the variable named'type2' has many blank observations, so we replace them with none.
+
+
+```r
+pokemon <- pokemon %>%
+  mutate_all(~ifelse( .== "", NA, .))%>%
+  mutate(type2 = replace_na(type2, 'none'))
+```
+
+
+
+
+#### Group_by: Generation
+
+Number of Pokémon Introduced in Each Generation:
+
+```r
+pokemon_per_gen <- table(pokemon$generation);pokemon_per_gen
+```
+
+```
+## 
+##   1   2   3   4   5   6   7 
+## 151 100 135 107 156  72  80
+```
+
+
+
+```r
+# Plot
+ggplot(data = as.data.frame(pokemon_per_gen), aes(x = reorder(Var1, Freq), y = Freq)) + geom_bar(stat = "identity", fill = "lightskyblue") +
+  labs(x = "Generation", y = "Number of Pokémon", title = "Pokémon Introduced per Generation") +
+  coord_flip()+
+  theme_light()
+```
+
+![](Final_Project_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+
+Prevalence of Pokémon Types in Each Generation:
+
+```r
+# Count primary types per generation
+type_per_gen <- aggregate(cbind(type1) ~ generation, data = pokemon, FUN = function(x) length(unique(x)));type_per_gen
+```
+
+```
+##   generation type1
+## 1          1    15
+## 2          2    16
+## 3          3    16
+## 4          4    17
+## 5          5    17
+## 6          6    17
+## 7          7    16
+```
+
+```r
+# Plot
+ggplot(data = type_per_gen, aes(x = as.numeric(generation), y = type1)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Generation", y = "Unique Primary Types", title = "Diversity of Primary Pokémon Types per Generation") +
+  theme_light()
+```
+
+![](Final_Project_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+
+
+2. Statistic Trends
+Evolution of Average Stats:
+
+
+```r
+avg_stats_per_gen <- aggregate(cbind(hp, attack, defense, sp_attack, sp_defense, speed) ~ generation, data = pokemon, mean)
+
+# Melting the data for easier plotting
+library(reshape2)
+```
+
+```
+## 
+## Attaching package: 'reshape2'
+```
+
+```
+## The following object is masked from 'package:tidyr':
+## 
+##     smiths
+```
+
+```r
+melted_data <- melt(avg_stats_per_gen, id.vars = "generation")
+
+# Plot
+ggplot(melted_data, aes(x = generation, y = value, color = variable)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Generation", y = "Average Stat Value", title = "Evolution of Average Stats per Generation") +
+  facet_wrap(~ variable)+
+  theme_minimal()
+```
+
+![](Final_Project_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+Distribution of Legendary Pokémon Across Generations:
+
+
+```r
+# Count legendary Pokémon per generation
+legendary_per_gen <- aggregate(is_legendary ~ generation, data = pokemon, sum)
+
+# Plot
+ggplot(data = legendary_per_gen, aes(x = generation, y = is_legendary)) +
+  geom_bar(stat = "identity", fill = "gold") +
+  labs(x = "Generation", y = "Number of Legendary Pokémon", title = "Legendary Pokémon per Generation") +
+  theme_minimal()
+```
+
+![](Final_Project_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+
+Capture Rate Change Across Generations:
+
+
+```r
+pokemon$capture_rate <- as.numeric(as.character(pokemon$capture_rate))
+```
+
+```
+## Warning: NAs introduced by coercion
+```
+
+```r
+capture_rate_per_gen <- aggregate(capture_rate ~ generation, data = pokemon, mean)
+
+ggplot(data = capture_rate_per_gen, aes(x = generation, y = capture_rate)) +
+  geom_line(color = "blue") +
+  geom_point(color = "red", size = 2) +
+  labs(x = "Generation", y = "Average Capture Rate", title = "Average Capture Rate Change Across Generations") +
+  theme_minimal()
+```
+
+![](Final_Project_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+
+
+
+
+
+
+```r
+against_columns <- grep("against_", names(pokemon), value = TRUE)
+
+# Calculate the mean of 'against_' variables for each generation
+avg_against_per_gen <- pokemon %>%
+  group_by(generation) %>%
+  summarise_at(vars(against_columns), mean, na.rm = TRUE) %>%
+  gather(key = "against_type", value = "mean_value", -generation)
+```
+
+```
+## Warning: Using an external vector in selections was deprecated in tidyselect 1.1.0.
+## ℹ Please use `all_of()` or `any_of()` instead.
+##   # Was:
+##   data %>% select(against_columns)
+## 
+##   # Now:
+##   data %>% select(all_of(against_columns))
+## 
+## See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+```
+
+```r
+# Plot
+ggplot(avg_against_per_gen, aes(x = generation, y = mean_value, color = against_type)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Generation", y = "Average Against Value", title = "Average 'Against' Values per Generation") +
+  theme_minimal() +
+  facet_wrap(~ against_type)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + # To improve x-axis labels readability
+  scale_color_viridis_d() # Use a distinct color palette for better differentiation
+```
+
+![](Final_Project_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+
+
+
+
+
+
+
