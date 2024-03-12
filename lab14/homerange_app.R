@@ -4,7 +4,7 @@ library("shiny")
 homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
 
 ui <- fluidPage(titlePanel("Homerange Locomotion"),
-                radioButtons("x", "Select Fill Variable", choices=c("trophic.guild", "thermoregulation"), selected="trophic.guild"),
+                textInput("x", "Select Fill Variable"),
                 plotOutput("plot", width="600px", height="500px")
 )
 
